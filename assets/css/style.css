@@ -1,0 +1,60 @@
+/*
+ * CSS for Trivia Game
+ */
+body {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    background: url(../images/trivia1.jpg) no-repeat center fixed; 
+    background-size: cover;
+    text-align: center;
+}
+
+.gamearea,
+.timeleft,
+.question,
+.choices {
+    display: none;
+}
+
+.gamearea {
+    background-color: #fef392;
+    height: 100%;
+    width: 100%;
+    margin: 100px 0 auto auto;
+    border: 5px solid #000;
+    border-radius: 5px;
+}
+
+.header {
+    font-size: 40px;
+    font-weight: 900;
+    color: #2a2bf3;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.playgamebutton {
+    font-size: 25px;
+    font-weight: 900;
+    width: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #000;
+    border-radius: 5px;
+  }
+
+.playgamebutton:hover { 
+    background-color: #2a2bf3;
+    color: white;
+}
+
+.choice {
+    width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.choice:hover { 
+    border: 5px solid #2a2bf3;
+}
