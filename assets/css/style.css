@@ -9,8 +9,11 @@ body {
 }
 
 .gamearea,
+.result,
+.answer,
 .timeleft,
 .question,
+.gameresults,
 .choices {
     display: none;
 }

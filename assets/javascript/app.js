@@ -69,9 +69,14 @@ $(document).ready(function() {
 
     var TrivaGame = {
         themes: [StarWarsTheme, StarTrekTheme],
-        time: 0,
+        time: 10,
         timer: null,
+        currentTheme: null,
+        currentQuestion: null,
         currentThemeIndex: 0,
+        correctAnswers: 0,
+        incorrectAnswers: 0,
+        unAnswered: 0,
 
         initializeGame: function() {
             console.log("initializeGame...");
@@ -80,41 +85,99 @@ $(document).ready(function() {
 
         startGame: function() {
             console.log("startGame...");
-            var theme = this.themes[this.currentThemeIndex];
-            var question = theme.questions[theme.currentQuestionIndex];
-            $(".time").text(this.time + " seconds");
+            // Get a theme
+            this.currentTheme = this.themes[this.currentThemeIndex];
+            this.currentTheme.currentQuestionIndex = -1;
+
+            // Set page header
+            $(".header").text(this.currentTheme.themeName + " Trivia!!");
+
+            // Set question from theme
+            this.setQuestion();
+            
+        },
+
+        setQuestion: function() {
+            ++TrivaGame.currentTheme.currentQuestionIndex;
+            if (TrivaGame.currentTheme.currentQuestionIndex >= TrivaGame.currentTheme.questions.length) {
+                $(".timeleft").css("display", "none");
+                $(".result").text("All done, here's how you did!!");
+                $(".answer").css("display", "none");
+                $(".correctcount").text(TrivaGame.correctAnswers);
+                $(".incorrectcount").text(TrivaGame.incorrectAnswers);
+                $(".unansweredcount").text(TrivaGame.unAnswered);
+                $(".gameresults").css("display", "block");
+                $(".playgamebutton").text("Play Again");
+                $(".playgamebutton").show();
+                return; 
+            }
+
+            TrivaGame.currentQuestion = TrivaGame.currentTheme.questions[TrivaGame.currentTheme.currentQuestionIndex];
+            $(".gameresults").css("display", "none");
+            $(".result").css("display", "none");
+            $(".answer").css("display", "none");
+            $(".time").text(TrivaGame.time + " seconds");
             $(".timeleft").css("display", "block");
-            $(".question").text(question.question);
+            $(".question").text(TrivaGame.currentQuestion.question);
             $(".question").css("display", "block");
             $(".choices").html("");
-            question.choices.forEach(function(element) {
+            TrivaGame.currentQuestion.choices.forEach(function(element) {
                 console.log(element);
                 var li = $("<li class=choice></li>");
                 $(li).text(element);
                 $(".choices").append(li);                
             });
             $(".choices").css("display", "block");
-            this.time = 10;
-            this.timer = setInterval(this.timeGame, 1000);
+            TrivaGame.time = 30;
+            $(".time").text(TrivaGame.time + " seconds");
+            TrivaGame.timer = setInterval(TrivaGame.timeGame, 1000);
+
             //
             // Callback for the question's choices
             //
             $(".choice").click(function(event) {
                 console.log("List item selected. " + $(this).text());
+                clearInterval(TrivaGame.timer);
+                TrivaGame.timer = null;
+                $(".question").css("display", "none");
+                $(".choices").css("display", "none");
+                if ($(this).text() === TrivaGame.currentQuestion.answer) {
+                    TrivaGame.correctAnswers++;
+                    $(".result").css("display", "block");
+                    $(".result").text("Correct!!!");
+                } else {
+                    TrivaGame.incorrectAnswers++;
+                    $(".result").text("Nope!!");
+                    $(".correctanswer").text(TrivaGame.currentQuestion.answer);
+                    $(".result").css("display", "block");
+                    $(".answer").css("display", "block");
+                }
+
+                // Get next question
+                setTimeout(TrivaGame.setQuestion, 5000);
+
             });
         },
 
         timeGame: function() {
             console.log("timeGame...");
             TrivaGame.time--;
-            if (TrivaGame.time > 0)
-                $(".time").text(TrivaGame.time + " seconds");
-            else {
+            $(".time").text(TrivaGame.time + " seconds");
+
+            if (TrivaGame.time <= 0) {
+                TrivaGame.unAnswered++;
                 clearInterval(TrivaGame.timer);
                 TrivaGame.timer = null;
-                //$(".timeleft").css("display", "none");
-                //$(".question").css("display", "none");
-                //$(".choices").css("display", "none");
+                $(".question").css("display", "none");
+                $(".choices").css("display", "none");
+
+                $(".result").text("Out of time!!");
+                $(".correctanswer").text(TrivaGame.currentQuestion.answer);
+                $(".result").css("display", "block");
+                $(".answer").css("display", "block");
+
+                // Get next question
+                setTimeout(TrivaGame.setQuestion, 5000);
             }
         }
     };
@@ -130,5 +193,5 @@ $(document).ready(function() {
     //
     // Wait a bit to get the game going
     //
-    setTimeout(TrivaGame.initializeGame, 2000);
+    setTimeout(TrivaGame.initializeGame, 3000);
 });
