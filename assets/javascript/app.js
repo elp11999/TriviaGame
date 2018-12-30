@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     var StarWarsTheme = {
         themeName: "Star Wars",
-        currentQuestionIndex: 9,
+        currentQuestionIndex: 0,
         questions: [
             {
                 question: "What were Luke Skywalker's aunt and uncle's job on Tatooine?",
@@ -16,7 +16,7 @@ $(document).ready(function() {
             {
                 question: "In how many languages is C-3P0 fluent?",
                 answer: "More than 6 million",
-                choices: ["More than 1 hundred", "More than 1 thousand", "More than 1 million", "More than 6 million"]
+                choices: ["1 hundred", "1 thousand", "1 million", "More than 6 million"]
             },
             {
                 question: "Which character is partially named after George Lucas's son?",
@@ -69,7 +69,7 @@ $(document).ready(function() {
 
     var TrivaGame = {
         themes: [StarWarsTheme, StarTrekTheme],
-        time: 10,
+        time: 30,
         timer: null,
         currentTheme: null,
         currentQuestion: null,
@@ -79,20 +79,20 @@ $(document).ready(function() {
         unAnswered: 0,
 
         initializeGame: function() {
-            console.log("initializeGame...");
+            //console.log("initializeGame...");
             $(".gamearea").css("display", "block");
         },
 
         startGame: function() {
-            console.log("startGame...");
+            //console.log("startGame...");
             // Get a theme
             this.currentTheme = this.themes[this.currentThemeIndex];
             this.currentTheme.currentQuestionIndex = -1;
 
-            // Set page header
+            // Set page header based off the theme
             $(".header").text(this.currentTheme.themeName + " Trivia!!");
 
-            // Set question from theme
+            // Set the question from theme
             this.setQuestion();
             
         },
@@ -122,13 +122,13 @@ $(document).ready(function() {
             $(".question").css("display", "block");
             $(".choices").html("");
             TrivaGame.currentQuestion.choices.forEach(function(element) {
-                console.log(element);
+                //console.log(element);
                 var li = $("<li class=choice></li>");
                 $(li).text(element);
                 $(".choices").append(li);                
             });
             $(".choices").css("display", "block");
-            TrivaGame.time = 30;
+            TrivaGame.time = 5;
             $(".time").text(TrivaGame.time + " seconds");
             TrivaGame.timer = setInterval(TrivaGame.timeGame, 1000);
 
@@ -178,6 +178,7 @@ $(document).ready(function() {
 
                 // Get next question
                 setTimeout(TrivaGame.setQuestion, 5000);
+                console.log("TrivaGame.correctAnswers=" + TrivaGame.correctAnswers);
             }
         }
     };

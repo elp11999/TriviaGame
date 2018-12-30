@@ -22,7 +22,7 @@ body {
     background-color: #fef392;
     height: 100%;
     width: 100%;
-    margin: 100px 0 auto auto;
+    margin: 50px 0 auto auto;
     border: 5px solid #000;
     border-radius: 5px;
 }
@@ -60,4 +60,28 @@ body {
 
 .choice:hover { 
     border: 5px solid #2a2bf3;
+}
+
+.timeleft {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.result {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.question {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.answer,
+.choices {
+    font-size: 18px;
+} 
+
+.gameresults {
+    font-size: 18px
 }
