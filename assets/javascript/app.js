@@ -136,7 +136,7 @@ $(document).ready(function() {
             // Callback for the question's choices
             //
             $(".choice").click(function(event) {
-                console.log("List item selected. " + $(this).text());
+                //console.log("List item selected. " + $(this).text());
                 clearInterval(TrivaGame.timer);
                 TrivaGame.timer = null;
                 $(".question").css("display", "none");
