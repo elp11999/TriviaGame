@@ -128,7 +128,6 @@ $(document).ready(function() {
                 $(".choices").append(li);                
             });
             $(".choices").css("display", "block");
-            TrivaGame.time = 5;
             $(".time").text(TrivaGame.time + " seconds");
             TrivaGame.timer = setInterval(TrivaGame.timeGame, 1000);
 
