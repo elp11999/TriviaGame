@@ -342,8 +342,8 @@ $(document).ready(function() {
             },
             {
                 question: "Who was Spock's Mother ?",
-                answer: "Antonia",
-                choices: ["Alisha", "Antonia", "Antonia", "Ailish"]
+                answer: "Amanda",
+                choices: ["Alisha", "Antonia", "Amanda", "Ailish"]
             },
             {
                 question: "What was the first Star Trek movie to win an Oscar?",
