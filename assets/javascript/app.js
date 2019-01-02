@@ -648,9 +648,7 @@ $(document).ready(function() {
             // Get a theme
             if (++this.currentThemeIndex === this.themes.length)
                 this.currentThemeIndex = 0;  
-            this.currentTheme = this.themes[this.currentThemeIndex];
-            if (TrivaGame.currentTheme.currentQuestionIndex >= (TrivaGame.currentTheme.questions.length - 1))
-                TrivaGame.currentTheme.currentQuestionIndex = -1;  
+            this.currentTheme = this.themes[this.currentThemeIndex];  
 
             // Set page header based off the theme
             $(".header").text(this.currentTheme.themeName + " Trivia!");
@@ -677,8 +675,10 @@ $(document).ready(function() {
                 $(".playgamebutton").show();
                 return; 
             }
-            ++TrivaGame.currentTheme.currentQuestionIndex;            
-            //console.log("currentQuestionIndex=" + TrivaGame.currentTheme.currentQuestionIndex); 
+
+            // Get next question
+            if (++TrivaGame.currentTheme.currentQuestionIndex >= TrivaGame.currentTheme.questions.length)
+                TrivaGame.currentTheme.currentQuestionIndex = 0;
             TrivaGame.currentQuestion = TrivaGame.currentTheme.questions[TrivaGame.currentTheme.currentQuestionIndex];
             $(".gameresults").css("display", "none");
             $(".result").css("display", "none");
@@ -760,5 +760,5 @@ $(document).ready(function() {
     //
     // Wait a bit to get the game going
     //
-    setTimeout(TrivaGame.initializeGame, 50);
+    setTimeout(TrivaGame.initializeGame, 5000);
 });
