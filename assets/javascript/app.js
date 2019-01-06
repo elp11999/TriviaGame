@@ -3,6 +3,214 @@
 //
 $(document).ready(function() {
     console.log("Trivia Game game started...");
+    
+
+    var FamousMovieQuotesTheme = {
+        themeName: "Famous Movie Quotes",
+        currentQuestionIndex: -1,
+        questions: [
+            {
+                question: "\"I see dead people.\"",
+                answer: "The Sixth Sense",
+                choices: ["Unbreakable", "Signs", "The Sixth Sense", "The Happening"]
+            },
+            {
+                question: "\"Hey, careful, man, there's a beverage here!\"",
+                answer: "The Big Lebowski",
+                choices: ["Fargo", "The Big Lebowski", "Barton Fink", "Hail, Caesar"]
+            },
+            {
+                question: "\"A martini. Shaken, not stirred.\"",
+                answer: "Goldfinger",
+                choices: ["Thunderball", "Dr. No", "Diamonds Are Forever", "Goldfinger"]
+            },
+            {
+                question: "\"Open the pod bay doors, please, HAL.\"",
+                answer: "2001: A Space Odyssey",
+                choices: ["Gravity", "2001: A Space Odyssey", "Moon", "Sunshine"]
+            },
+            {
+                question: "\"For what we are about to see next, we must enter quietly into the realm of genius.\"",
+                answer: "Young Frankenstein",
+                choices: ["Suicide Squad", "JeruZale ", "Young Frankenstein", "Gods of Egypt"]
+            },
+            {
+                question: "\"What we've got here is failure to communicate.\"",
+                answer: "Cool Hand Luke",
+                choices: ["The Last Castle", "Cool Hand Luke", "Brubaker", "Animal Factory"]
+            },
+            {
+                question: "\"Hello handsome, is that a ten gallon hat or are you just enjoying the show.\"",
+                answer: "Blazing Saddles",
+                choices: ["Spaceballs", "Silent Movie", "History of the World, Part I", "Blazing Saddles"]
+            },
+            {
+                question: "\"My advice to you is to start drinking heavily.\"",
+                answer: "Animal House",
+                choices: ["Revenge of the Nerds", "Animal House", "Old School", "Sorority Boys"]
+            },
+            {
+                question: "\"You couldn't hear a dump truck driving through a nitroglycerin plant.\"",
+                answer: "National Lampoon's Christmas Vacation",
+                choices: ["Home Alone", "The Great Outdoors", "National Lampoon's Christmas Vacation", "RV"]
+            },
+            {
+                question: "\"Good night, Santa. Good night, Mrs. Santa's sister.\"",
+                answer: "Bad Santa",
+                choices: ["Skin Deep", "Bad Santa", "Love Actually", "The Holiday"]
+            },
+            {
+                question: "\"I have to remind myself that some birds aren't meant to be caged.\"",
+                answer: "The Shawshank Redemption",
+                choices: ["The Mist", "Murder in the First", "The Shawshank Redemption", "The Hurricane"]
+            },
+            {
+                question: "\"You know, I got a hunch, fat man. I got a hunch it's me from here on in.\"",
+                answer: "The Hustler",
+                choices: ["Hud", "The Baltimore Bullet", "The Hustler", "Turn the River"]
+            },
+            {
+                question: "\"People who talk in metaphors oughta shampoo my crotch.\"",
+                answer: "As Good as It Gets",
+                choices: ["As Good as It Gets", "Sideways", "Broadcast News", "Riding in Cars with Boys"]
+            },
+            {
+                question: "\"He left me with a little something called herpes. Which I then gave to the dog. But thats neither here nor there.\"",
+                answer: "Old School",
+                choices: ["Road Trip", "Starsky & Hutch", "Old School", "Neighbors "]
+            },
+            {
+                question: "\"Now listen, hear me good mama. Please. Don't make me have to send you to jail... There's white time in jail and there's colored time in jail. The worst kind of time you can do is colored time.\"",
+                answer: "In the Heat of the Night",
+                choices: ["Witness", "The Big Heat", "The Organization", "In the Heat of the Night"]
+            },
+            {
+                question: "\"You're good, Kid. But as long as I'm around, you're second best.\"",
+                answer: "The Cincinnati Kid",
+                choices: ["House of Strangers", "The Cincinnati Kid", "Lucky You", "Hotel"]
+            },
+            {
+                question: "\"Sir, you have no call to get snippy with me! I'm just doing my job here.\"",
+                answer: "Fargo",
+                choices: ["Blood Simple", "A Simple Plan", "Fargo", "A Serious Man"]
+            },
+            {
+                question: "\"Oh, I'm not worried miss. Gave myself up for dead back where we started.\"",
+                answer: "The African Queen",
+                choices: ["On Golden Pond", "Prizzi's Honor", "The African Queen", "Isle of Fury"]
+            },
+            {
+                question: "\"If my answers frighten you then you should cease asking scary questions.\"",
+                answer: "Pulp Fiction",
+                choices: ["American Gangster", "Pulp Fiction", "Shaft", "Four Rooms"]
+            },
+            {
+                question: "\"Revenge is a dish best served cold.\"",
+                answer: "Kill Bill: Vol. 1",
+                choices: ["Hell Ride", "Into the Sun", "Kill Bill: Vol. 1", "Fight Club"]
+            },
+            {
+                question: "\"Pay no attention to that man behind the curtain!.\"",
+                answer: "The Wizard of Oz",
+                choices: ["Beauty and the Beast", "Babes in Arms", "Mary Poppins", "The Wizard of Oz"]
+            },
+            {
+                question: "\"I’m having an old friend for dinner.\"",
+                answer: "The Silence of the Lambs",
+                choices: ["Seven", "Manhunter", "The Silence of the Lambs", "Dressed to Kill"]
+            },
+            {
+                question: "\"There’s no crying in baseball!\"",
+                answer: "A League of Their Own",
+                choices: ["The Longshots", "The Scout", "Soul of the Game", "A League of Their Own"]
+            },
+            {
+                question: "\"Fasten your seatbelts. It's going to be a bumpy night.\"",
+                answer: "All About Eve",
+                choices: ["Sunset Boulevard", "All About Eve", "Stage Struck", "Morning Glory"]
+            },
+            {
+                question: "\"Roads? Where we're going we don't need roads.\"",
+                answer: "Back to the Future",
+                choices: ["Who Framed Roger Rabbit", "I Wanna Hold Your Hand", "Back to the Future", "Back in Time"]
+            },
+            {
+                question: "\"Now I know how a TV dinner feels.\"",
+                answer: "Die Hard",
+                choices: ["Ricochet", "Die Hard", "Skyscraper", "Extraction"]
+            },
+            {
+                question: "\"Have you ever met anybody you didn't kill?\"",
+                answer: "Lethal Weapon",
+                choices: ["The Glimmer Man", "Bad Boys", "Point Break", "Lethal Weapon"]
+            },
+            {
+                question: "\"What do we know? If I know what we know then I could tell you what we know and if anyone else knows!\"",
+                answer: "Conspiracy Theory",
+                choices: ["The Parallax View", "Assassins", "Conspiracy Theory", "16 blocks"]
+            },
+            {
+                question: "\"We’ll always have Paris.\"",
+                answer: "Casablanca",
+                choices: ["Allied", "Casablanca", "Citizen Kane", "It's a Wonderful Life"]
+            },
+            {
+                question: "\"The greatest trick the devil ever pulled was convincing the world he didn't exist.\"",
+                answer: "The Usual Suspect",
+                choices: ["The Usual Suspect", "Nine Queens", "Heist", "Heat"]
+            },
+            {
+                question: "\"Keep your friends close, but your enemies closer.\"",
+                answer: "The Godfather Part II",
+                choices: ["Righteous Kill", "Carlito's Way", "Goodfellas", "The Godfather Part II"]
+            },
+            {
+                question: "\"I am big! It's the pictures that got small.\"",
+                answer: "Sunset Boulevard",
+                choices: ["The Lost Weekend", "The Users", "Sunset Boulevard", "Sabrina"]
+            },
+            {
+                question: "\"After all, tomorrow is another day!\"",
+                answer: "Gone with the Wind",
+                choices: ["Free State of Jones", "Gone with the Wind", "Glory", "Citizen Kane"]
+            },
+            {
+                question: "\"Gentlemen, you can't fight in here! This is the war room!\"",
+                answer: "Dr Strangelove",
+                choices: ["Dr Strangelove", "Fail Safe", "Up the Creek", "Seven Days in May"]
+            },
+            {
+                question: "\"They may take our lives, but they'll never take our freedom!\"",
+                answer: "Braveheart",
+                choices: ["Hacksaw Ridge", "Alexander", "Braveheart", "Gladiator"]
+            },
+            {
+                question: "\"Well, this is the .44 Magnum Auto-Mag and it hold a 300-grain cartridge. And, if properly used, it can remove the fingerprints.\"",
+                answer: "Sudden Impact",
+                choices: ["The Dead Pool", "Sudden Impact", "48 Hrs", "Firefox"]
+            },
+            {
+                question: "\"You're gonna need a bigger boat.\"",
+                answer: "Jaws",
+                choices: ["Jurassic Park", "Close Encounters of the Third Kind", "The Meg", "Jaws"]
+            },
+            {
+                question: "\"I love the smell of napalm in the morning.\"",
+                answer: "Apocalypse Now",
+                choices: ["Saving Private Ryan", "Apocalypse Now", "Tropic Thunder", "Hamburger Hill"]
+            },
+            {
+                question: "\"Every time a bell rings, an angel gets his wings.\"",
+                answer: "It’s a Wonderful Life",
+                choices: ["It’s a Wonderful Life", "Pocketful of Miracles", "The Bishop's Wife", "It Happened One Christmas"]
+            },
+            {
+                question: "\"You know how to whistle, don't you, Steve? You just put your lips together and blow.\"",
+                answer: "To Have and Have Not",
+                choices: ["Only Angels Have Wings", "To Have and Have Not", "The Breaking Point", "Islands in the Stream"]
+            },
+        ]
+    }
 
     var StarWarsTheme = {
         themeName: "Star Wars",
@@ -620,7 +828,7 @@ $(document).ready(function() {
     };
 
     var TrivaGame = {
-        themes: [StarWarsTheme, StarTrekTheme],
+        themes: [FamousMovieQuotesTheme, StarWarsTheme, StarTrekTheme],
         time: 30,
         timer: null,
         currentTheme: null,
@@ -653,7 +861,7 @@ $(document).ready(function() {
             // Set page header based off the theme
             $(".header").text(this.currentTheme.themeName + " Trivia!");
 
-            //console.log("TrivaGame.currentTheme.questions.length=" + TrivaGame.currentTheme.questions.length)
+            console.log("TrivaGame.currentTheme.questions.length=" + TrivaGame.currentTheme.questions.length)
 
             // Set the question from theme
             this.setQuestion();
@@ -683,7 +891,6 @@ $(document).ready(function() {
             $(".gameresults").css("display", "none");
             $(".result").css("display", "none");
             $(".answer").css("display", "none");
-            $(".time").text(TrivaGame.time + " seconds");
             $(".timeleft").css("display", "block");
             $(".question").text(TrivaGame.currentQuestion.question);
             $(".question").css("display", "block");
@@ -696,7 +903,7 @@ $(document).ready(function() {
             });
             $(".choices").css("display", "block");
             TrivaGame.time = 30;
-            $(".time").text(TrivaGame.time + " seconds");
+            $(".time").text(TrivaGame.time + " Seconds");
             TrivaGame.timer = setInterval(TrivaGame.timeGame, 1000);
 
             //
@@ -729,7 +936,7 @@ $(document).ready(function() {
         timeGame: function() {
             //console.log("timeGame...");
             TrivaGame.time--;
-            $(".time").text(TrivaGame.time + " seconds");
+            $(".time").text(TrivaGame.time + " Seconds");
 
             if (TrivaGame.time <= 0) {
                 TrivaGame.unAnswered++;
