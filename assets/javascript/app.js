@@ -5,8 +5,8 @@ $(document).ready(function() {
     console.log("Trivia Game game started...");
     
 
-    var FamousMovieQuotesTheme = {
-        themeName: "Famous Movie Quotes",
+    var MovieQuotesTheme = {
+        themeName: "Movie Quotes",
         currentQuestionIndex: -1,
         questions: [
             {
@@ -209,6 +209,106 @@ $(document).ready(function() {
                 answer: "To Have and Have Not",
                 choices: ["Only Angels Have Wings", "To Have and Have Not", "The Breaking Point", "Islands in the Stream"]
             },
+            {
+                question: "\"It’s just a flesh wound.\"",
+                answer: "Monty Python and the Holy Grail",
+                choices: ["Dark Age", "Yellowbeard", "Monty Python and the Holy Grail", "A Fish Called Wanda"]
+            },
+            {
+                question: "\"I’m just one stomach flu away from my goal weight.\"",
+                answer: "The Devil Wears Prada",
+                choices: ["Confessions of a Shopaholic", "The Intern", "The Iron Lady", "The Devil Wears Prada"]
+            },
+            {
+                question: "\"That rug really tied the room together, did it not?\"",
+                answer: "The Big Lebowski",
+                choices: ["Airheads", "The Big Lebowski", "Raising Arizona", "A Serious Man"]
+            },
+            {
+                question: "\"I’ll have what she’s having.\"",
+                answer: "When Harry Met Sally",
+                choices: ["Alex & Emma", "Down with Love", "And So It Goes", "When Harry Met Sally"]
+            },
+            {
+                question: "\"It’s like I have ESPN or something.\"",
+                answer: "Mean Girls",
+                choices: ["Mean Girls", "Clueless", "Harold", "The Breakfast Club"]
+            },
+            {
+                question: "\"It’s the first time I’ve ever seen you look ugly. And that makes me kind of happy.\"",
+                answer: "Bridesmaids",
+                choices: ["The Heat", "Sisters", "Bridesmaids", "Tammy"]
+            },
+            {
+                question: "\"It’s not a man purse. It’s called a satchel. Indiana Jones wears one.\"",
+                answer: "The Hangover",
+                choices: ["Harold & Kumar Go to White Castle", "The Hangover", "Father Figures", "The Groomsmen"]
+            },
+            {
+                question: "\"I don’t step on toes… I step on necks.\"",
+                answer: "Missing In Action 3",
+                choices: ["Missing In Action 3", "Kickboxer", "Way of the Dragon", "American Ninja"]
+            },
+            {
+                question: "\"They’ve been de-kaffir-nated!.\"",
+                answer: "Lethal Weapon 2",
+                choices: ["Die Hard", "Lethal Weapon 2", "Cop Out", "Predator 2"]
+            },
+            {
+                question: "\"Go ahead, make my day.\"",
+                answer: "Sudden Impact",
+                choices: ["Dirty Harry", "Tightrope", "True Crime", "Sudden Impact"]
+            },
+            {
+                question: "\"You’re a disease… And I’m the cure.\"",
+                answer: "Cobra",
+                choices: ["Fair Game", "Cobra", "Assassins", "The Enforcer"]
+            },
+            {
+                question: "\"Forgiveness is between them and God. It’s my job to arrange the meeting.\"",
+                answer: "Man On Fire",
+                choices: ["Man On Fire", "Trapped", "Death Sentence", "Training Day"]
+            },
+            {
+                question: "\"If it bleeds, we can kill it.\"",
+                answer: "Predator",
+                choices: ["Prometheus", "Aliens", "Predator", "Venom"]
+            },
+            {
+                question: "\"Consider that a divorce!\"",
+                answer: "Total Recall",
+                choices: ["Extracted", "Next", "The Terminator", "Total Recall"]
+            },
+            {
+                question: "\"It's not the men in your life that counts. It's the life in your men.\"",
+                answer: "I'm No Angel",
+                choices: ["The Talk of the Town", "I'm No Angel", "Baby Face", "Madame Butterfly"]
+            },
+            {
+                question: "\"You want to talk to God? Let’s go see him together. I’ve got nothing better to do.\"",
+                answer: "Raiders of the Lost Ark",
+                choices: ["The Empire Strikes Back", "Jaws", "Raiders of the Lost Ark", "Close Encounters of the Third Kind"]
+            },
+            {
+                question: "\"Our lives are defined by opportunities, even the ones we miss.\"",
+                answer: "The Curious Case of Benjamin Button",
+                choices: ["A River Runs Through It", "The Curious Case of Benjamin Button", "The Time Traveler's Wife", "Gone Girl"]
+            },
+            {
+                question: "\"Love means never having to say you're sorry.\"",
+                answer: "Love Story",
+                choices: ["Love Actually", "Gone with the Wind", "Love Story", "The Notebook"]
+            },
+            {
+                question: "\"You talking to me?\"",
+                answer: "Taxi Driver",
+                choices: ["Raging Bull", "The Deer Hunter", "Casino", "Taxi Driver"]
+            },
+            {
+                question: "\"A boy's best friend is his mother.\"",
+                answer: "Psycho",
+                choices: ["Misery", "Hide and Seek", "Psycho", "The Man Who Knew Too Much"]
+            }
         ]
     }
 
@@ -828,7 +928,10 @@ $(document).ready(function() {
     };
 
     var TrivaGame = {
-        themes: [FamousMovieQuotesTheme, StarWarsTheme, StarTrekTheme],
+        themes: [MovieQuotesTheme, StarWarsTheme, StarTrekTheme],
+        correctPhrases: ["That's right!", "Very good answer!", "Your pretty good!", "That’s spot on!", "You’ve nailed it!"],
+        incorrectPhrases: ["That one stumped you!", "I’m afraid you’re mistaken.", "No, you’ve got it wrong.", "That’s totally wrong.", "Sorry Charlie."],
+        timeoutPhrases: ["Your time is up!", "That one stumped you!", "You had 30 seconds to Google it!", "That was a tough one for you!", "Guess you needed more time!"],
         time: 30,
         timer: null,
         currentTheme: null,
@@ -861,7 +964,7 @@ $(document).ready(function() {
             // Set page header based off the theme
             $(".header").text(this.currentTheme.themeName + " Trivia!");
 
-            console.log("TrivaGame.currentTheme.questions.length=" + TrivaGame.currentTheme.questions.length)
+            //console.log("TrivaGame.currentTheme.questions.length=" + TrivaGame.currentTheme.questions.length)
 
             // Set the question from theme
             this.setQuestion();
@@ -918,10 +1021,10 @@ $(document).ready(function() {
                 if ($(this).text() === TrivaGame.currentQuestion.answer) {
                     TrivaGame.correctAnswers++;
                     $(".result").css("display", "block");
-                    $(".result").text("Correct!");
+                    $(".result").text(TrivaGame.correctPhrases[Math.floor(Math.random() * TrivaGame.correctPhrases.length)]);
                 } else {
-                    TrivaGame.incorrectAnswers++;
-                    $(".result").text("Nope!");
+                    TrivaGame.incorrectAnswers++;                    
+                    $(".result").text(TrivaGame.incorrectPhrases[Math.floor(Math.random() * TrivaGame.incorrectPhrases.length)]);
                     $(".correctanswer").text(TrivaGame.currentQuestion.answer);
                     $(".result").css("display", "block");
                     $(".answer").css("display", "block");
@@ -945,7 +1048,7 @@ $(document).ready(function() {
                 $(".question").css("display", "none");
                 $(".choices").css("display", "none");
 
-                $(".result").text("Out of time!");
+                $(".result").text(TrivaGame.timeoutPhrases[Math.floor(Math.random() * TrivaGame.timeoutPhrases.length)]);
                 $(".correctanswer").text(TrivaGame.currentQuestion.answer);
                 $(".result").css("display", "block");
                 $(".answer").css("display", "block");
